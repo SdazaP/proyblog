@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+  <div class="row">
+
+    <!-- Columna izquierda: publicaciones (gris) -->
+    <div class="col-lg-8 bg-light-subtle p-4" style="min-height: 100vh;">
+      <h1 class="mb-4 text-center">Blog</h1>
+      <hr>
+      {% for post in post %}
+      <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+          <h3 class="card-title">{{ post.titulo }}</h3>
+          <h6 class="card-subtitle mb-2 text-muted">
+            Publicado por {{ post.autor }} el {{ post.fecha }}
+          </h6>
+          <p class="card-text">{{ post.contenido }}</p>
+        </div>
+      </div>
+      {% empty %}
+      <div class="alert alert-info text-center" role="alert">
+        No hay publicaciones aún.
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Columna derecha: sección tipo "Latest Gist" -->
+    <div class="col-lg-4 bg-white border-start p-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <button class="btn btn-outline-primary mb-3 w-100 fw-bold">Últimas entradas</button>
+
+          {% for post in post|slice:":3" %}
+          <div class="mb-3 border-bottom pb-2">
+            <h6 class="fw-bold">{{ post.titulo|truncatechars:40 }} <span class="text-muted small">– {{ post.fecha|date:"D" }}</span></h6>
+            <p class="text-muted small">{{ post.contenido|truncatewords:12 }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock content %}
