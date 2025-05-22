@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-4">Registrate Hoy</h4>
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="d-grid mt-3">
+                            <button type="submit" class="btn btn-success">Acceder</button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-4">
+                        <small class="text-muted">
+                            Ya tienes una cuenta con nosotros?
+                            <a href="{% url 'login' %}">Login</a>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
