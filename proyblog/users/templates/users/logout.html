@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content-section text-center py-5 min-vh-100">
+    <div class=" p-5">
+        <h2 class="mb-4 text-success">¡Hasta pronto!</h2>
+        <p class="lead mb-4">Has cerrado sesión exitosamente.</p>
+        <a class="btn btn-outline-primary btn-lg" href="{% url 'login' %}">Iniciar sesión de nuevo</a>
+    </div>
+</div>
+{% endblock content %}
