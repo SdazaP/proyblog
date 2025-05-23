@@ -44,4 +44,4 @@ def profile_update(request):
         "u_form": u_form,
         "p_form": p_form
     }
-    return render(request, 'users/profile_update.html', context)
+    return render(request, 'users/profileUpdate.html', context)

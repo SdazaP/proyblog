@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
-{% load crispy_forms_tags %}
 
 {% block content %}
+{% load crispy_forms_tags %}
 <!-- Font Awesome CDN for social icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -11,7 +11,8 @@
             <div class="card shadow-sm border-0">
                 <div class="card-body text-center">
                     <div class="mb-3">
-                        <img src="" alt="Profile Image" class="rounded-circle" width="120" height="120">
+                        <img class="rounded-circle account-img" id="profile-img" src="{{ user.profile.image.url }}"
+                            class="img-radius" alt="User-Profile-Image">
                     </div>
                     <h3 class="card-title">{{ user.username|title }}</h3>
                     <p class="text-muted">{{ user.email }}</p>
@@ -23,14 +24,19 @@
                         <a href="#" class="text-dark"><i class="fab fa-facebook fa-lg"></i></a>
                     </div>
 
-                    <form method="post" enctype="multipart/form-data" class="text-start">
+                    <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        {{ u_form|crispy }}
-                        {{ p_form|crispy }}
-                        <div class="d-grid mt-3">
-                            <button type="submit" class="btn btn-success">Actualizar Perfil</button>
-                        </div>
+                        <fieldset class="form-group">
+                            {{ u_form|crispy }}
+                            {{ p_form|crispy }}
+                        </fieldset>
                     </form>
+
+                    <p>
+                        <a href="{% url 'profile-update' %}" class="btn btn-outline-primary position-relative">
+                            Actualizar Perfil
+                        </a>
+                    </p>
 
                 </div>
             </div>
