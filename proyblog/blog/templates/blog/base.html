@@ -48,14 +48,32 @@
                 <!-- Auth Buttons -->
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'profile'%}">{{ user.username }}</a>
+                    <li class="nav-item d-flex align-items-center ms-2">
+                        <a class="btn btn-outline-primary btn-sm" href="{% url 'blog-new' %}">Hacer Post</a>
                     </li>
-                    <li class="nav-item">
-                        <form method="POST" action="{% url 'logout' %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-danger ms-2">Cerrar Sesión</button>
-                        </form>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="{% url 'profile' %}"
+                            id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{{ user.profile.image.url }}" alt="{{ user.username }}"
+                                class="rounded-circle border border-2 me-2"
+                                style="width: 40px; height: 40px; object-fit: cover;">
+                            <span>{{ user.username }}</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'profile' %}">Mi perfil</a></li>
+                            <li>
+                                <form id="logout-form" method="POST" action="{% url 'logout' %}" class="d-none">
+                                    {% csrf_token %}
+                                </form>
+                                <a class="dropdown-item" href="#"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Cerrar sesión
+                                </a>
+                            </li>
+                        </ul>
+
                     </li>
 
                     {% else %}

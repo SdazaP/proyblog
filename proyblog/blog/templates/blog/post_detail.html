@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<div class="container mb-4 py-4 min-vh-100">
+  <div class="row g-0">
+    <div class="col-md-2 d-flex align-items-center justify-content-center">
+      <img src="{{ object.autor.profile.image.url }}" alt="{{ object.autor }}" class="img-fluid rounded-circle border border-2" style="width: 100px; height: 100px; object-fit: cover;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <div>
+            <a href="#" class="text-decoration-none fw-bold">{{ object.autor }}</a>
+            <div class="text-muted small">{{ object.fecha }}</div>
+          </div>
+          {% if object.autor == user %}
+          <div class="btn-group">
+            <a href="{% url 'blog-update' object.id %}" class="btn btn-sm btn-outline-success">Editar</a>
+            <a href="{% url 'blog-delete' object.id %}" class="btn btn-sm btn-outline-danger">Eliminar</a>
+          </div>
+          {% endif %}
+        </div>
+
+        <h2 class="card-title">{{ object.titulo }}</h2>
+        <p class="card-text">{{ object.contenido }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

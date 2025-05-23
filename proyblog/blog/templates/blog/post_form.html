@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-5 min-vh-100">
+    <div class="">
+        <div class="card-body">
+            <h3 class="card-title border-bottom pb-2 mb-4">Crear nuevo post</h3>
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="d-flex justify-content-end mt-3">
+                    <button type="submit" class="btn btn-primary">Publicar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
