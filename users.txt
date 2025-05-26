@@ -1,0 +1,5 @@
+clancy      clancy
+johndoe		JohnPass123!
+janedoe		JaneSecure#1
+tester01	TestMe!2024
+usuariox	ClavePrueba$5

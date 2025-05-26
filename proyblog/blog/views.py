@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from .models import Post
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.urls import reverse
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
+import random
 
 #Infromación para pruebas
 """ posts = [
@@ -32,10 +32,13 @@ from django.urls import reverse_lazy
 ] """
 
 def home(request):
-    context ={
-        'post': Post.objects.all()
+    posts = list(Post.objects.all())  # Convierte el QuerySet a lista
+    random.shuffle(posts)              # Mezcla la lista aleatoriamente
+    context = {
+        'post': posts
     }
     return render(request, 'blog/home.html', context)
+
 
 def about(request):
     return render(request, 'blog/about.html')
