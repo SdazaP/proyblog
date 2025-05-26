@@ -6,9 +6,9 @@
 
     <!-- Columna izquierda: publicaciones (gris) -->
     <div class="col-lg-8 p-4" style="min-height: 100vh;">
-      <h1 class="mb-4 text-center">Blog</h1>
+      <h1 class="mb-4 text-center">AsuMusic Blog</h1>
       {% for post in post %}
-      <div class="border border-1 rounded row mb-2 p-4">
+      <div class="border border-1 rounded row mb-3 p-4">
         <div class="col-md-2 d-flex align-items-center justify-content-center">
           <img src="{{ post.autor.profile.image.url }}" alt="{{ object.autor }}"
             class="img-fluid rounded-circle border border-2" style="width: 100px; height: 100px; object-fit: cover;">
@@ -22,8 +22,8 @@
               </div>
             </div>
 
-            <a href="{% url 'blog-detail' post.id %}" class="text-body text-decoration-none"><h2 class="card-title">{{ post.titulo }}</h2></a>
-            <p class="card-text">{{ post.contenido }}</p>
+            <a href="{% url 'blog-detail' post.id %}" class="text-body text-decoration-none"><h2 class="card-title mb-4">{{ post.titulo }}</h2></a>
+            <p class="card-text pb-5">{{ post.contenido }}</p>
           </div>
         </div>
       </div>
